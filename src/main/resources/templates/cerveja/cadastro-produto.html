@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				layout:decorate="~{layout}">
+				
+
+<body>
+
+
+
+	<section layout:fragment="principal">
+
+
+			<div class="page-header">
+				<div class="container-fluid">
+					<h1>
+						Cadastro de produto
+					</h1>
+				</div>
+			</div>
+
+		<div class="container-fluid">
+
+	<div class="alert  alert-danger  alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
+	</div>
+
+	<form method="POST"
+			th:object="${cerveja}" 
+			class="form-vertical  js-form-loading">
+		<div class="row">	
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label for="sku">Sku</label>
+					<input id="sku" type="text" class="form-control"/>
+				</div>
+			</div>
+			<div class="col-sm-9">
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input id="nome" type="text" class="form-control"/>
+				</div>	
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="form-group col-sm-12">
+				<label for="descricao">Descrição</label>
+				<textarea id="descricao" rows="3" class="form-control"></textarea>
+			</div>
+		</div>
+		
+	<div class="row">	
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label for="estilo">Estilo</label>
+					<div class="cr-field-action"/>
+					<select id="estilo" class="form-control">
+					<option value="">Selecione um campo</option>
+					<option value="1">Teste </option>
+					</select>
+					
+						<div class="cr-field-action-icon">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+						<i class="glyphicon  glyphicon-plus-sign"></i>
+						</a>
+					</div>
+					
+				</div>	
+			</div>
+	
+		<div class="col-sm-12">
+				<div class="form-group sabor">
+					<label for="sabor">Sabor</label>
+					<select id="sabor" class="form-control">
+					<option value="">Selecione um campo </option>
+					<option value="1">Teste </option>
+					</select>
+		
+				</div>	
+			</div>
+			</div>
+			
+		<div class="col-sm-3">
+				<div class="form-group">
+					<label for="teorAlcoolico">Teor alcoolico</label>
+					<div class="input-group"> 	
+					<input id="teorAlcoolico" type="text" class="form-control js-decimal"/>
+					<div class="input-group-addon">%</div>
+				</div>	
+			</div>
+			</div>
+			
+			<div class="col-sm-2">
+				<div class="form-group">
+					<label for="nacionalidade">Nacionalidade</label>
+					<div >	
+						<div class="radio radio-in-line">
+							<input type="radio" name="nacionalidade">
+							<label>Nacional</label>
+						</div>
+							<div class="radio radio-in-line">
+							<input type="radio" name="nacionalidade">
+							<label>Internacional</label>
+						</div>
+					</div>
+				</div>	
+			</div>	
+		</div>
+	
+		
+	
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+							<label for="preco">Preço</label>
+									<div class="input-group"> 
+										<div class="input-group-addon">R$</div>
+										<input id="preco" type="text" class="form-control js-decimal" placeholder="R$"/>
+									</div>
+							</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label for="comissao">Comissão</label>
+						<div class="input-group"> 
+					<input id="comissao" type="text" class="form-control js-decimal" placeholder="Valor da comissão"/>
+					<div class="input-group-addon">%</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-sm-3">
+				<div class="form-group">
+					<label for="estoque">Estoque</label>
+						<div class="input-group"> 
+					<input id="estoque" type="text" class="form-control js-decimal"/>
+					<div class="input-group-addon">Qtd</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+			
+				<div class="form-group">
+					<button class="btn  btn-primary" type="submit">Salvar</button>
+<!-- 			<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a> -->
+<!-- 			<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a> -->
+		
+		</div>
+
+	</form>
+</div>
+
+<div th:replace="fragments/cadastroEstiloModal :: modalEstilo"></div>
+</section>
+
+
+
+</body>
+</html>
