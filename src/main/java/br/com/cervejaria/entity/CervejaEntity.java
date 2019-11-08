@@ -21,7 +21,7 @@ import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
 @Entity
-@Table(name="cerveja")
+@Table(name="cervejas")
 public class CervejaEntity implements Serializable {
 	
 	/**

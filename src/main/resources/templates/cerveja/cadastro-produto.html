@@ -27,20 +27,22 @@
 		<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
 	</div>
 
-	<form method="POST"
+	<form 	th:action="@{/cerveja/salvar}"
 			th:object="${cerveja}" 
+			method="POST"
 			class="form-vertical  js-form-loading">
+			
 		<div class="row">	
 			<div class="col-sm-3">
 				<div class="form-group">
 					<label for="sku">Sku</label>
-					<input id="sku" type="text" class="form-control"/>
+					<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 				</div>
 			</div>
 			<div class="col-sm-9">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input id="nome" type="text" class="form-control"/>
+					<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
 				</div>	
 			</div>
 		</div>
@@ -48,7 +50,7 @@
 		<div class="row">
 			<div class="form-group col-sm-12">
 				<label for="descricao">Descrição</label>
-				<textarea id="descricao" rows="3" class="form-control"></textarea>
+				<textarea id="descricao" rows="3" class="form-control" th:field="*{descricao}"></textarea>
 			</div>
 		</div>
 		
@@ -87,7 +89,7 @@
 				<div class="form-group">
 					<label for="teorAlcoolico">Teor alcoolico</label>
 					<div class="input-group"> 	
-					<input id="teorAlcoolico" type="text" class="form-control js-decimal"/>
+					<input id="teorAlcoolico" type="text" class="form-control js-decimal" th:field="*{teorAlcoolico}"/>
 					<div class="input-group-addon">%</div>
 				</div>	
 			</div>
@@ -95,20 +97,20 @@
 			
 			<div class="col-sm-2">
 				<div class="form-group">
+					
 					<label for="nacionalidade">Nacionalidade</label>
-					<div >	
+					<div>	
+						<th:block th:each="o : ${origem}" th:value="${o}" >
 						<div class="radio radio-in-line">
-							<input type="radio" name="nacionalidade">
-							<label>Nacional</label>
+							<input th:id="|id_${o}|" type="radio" th:value="${o}" th:field="*{origem}">
+							<label th:for="|id_${o}|" th:text="${o.nacionalidade}"></label>
 						</div>
-							<div class="radio radio-in-line">
-							<input type="radio" name="nacionalidade">
-							<label>Internacional</label>
-						</div>
+						</th:block>
 					</div>
 				</div>	
 			</div>	
-		</div>
+			</div>
+	
 	
 		
 	
@@ -118,7 +120,7 @@
 							<label for="preco">Preço</label>
 									<div class="input-group"> 
 										<div class="input-group-addon">R$</div>
-										<input id="preco" type="text" class="form-control js-decimal" placeholder="R$"/>
+										<input id="preco" type="text"  class="form-control js-decimal" placeholder="R$" />
 									</div>
 							</div>
 			</div>
@@ -127,7 +129,7 @@
 				<div class="form-group">
 					<label for="comissao">Comissão</label>
 						<div class="input-group"> 
-					<input id="comissao" type="text" class="form-control js-decimal" placeholder="Valor da comissão"/>
+					<input id="comissao" type="text" class="form-control js-decimal" placeholder="Valor da comissão"  />
 					<div class="input-group-addon">%</div>
 				</div>
 			</div>
@@ -147,13 +149,9 @@
 			
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
-<!-- 			<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a> -->
-<!-- 			<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a> -->
-		
-		</div>
-
+				</div>
 	</form>
-</div>
+
 
 <div th:replace="fragments/cadastroEstiloModal :: modalEstilo"></div>
 </section>
