@@ -59,7 +59,7 @@
 					<div class="cr-field-action"/>
 					<select id="estilo" class="form-control">
 					<option value="">Selecione um campo</option>
-					<option value="1">Teste </option>
+					<option th:each="estilo : ${estilos}" th:value="${estilo}" th:text="${estilo.nome}">Teste </option>
 					</select>
 					
 						<div class="cr-field-action-icon">
@@ -75,8 +75,8 @@
 				<div class="form-group sabor">
 					<label for="sabor">Sabor</label>
 					<select id="sabor" class="form-control">
-					<option value="">Selecione um campo </option>
-					<option value="1">Teste </option>
+					<option  value="">Selecione um campo </option>
+					<option  th:each="s : ${sabor}" th:value="${s}" th:text="${s.descricao}">Teste </option>
 					</select>
 		
 				</div>	

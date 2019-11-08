@@ -3,16 +3,16 @@ package br.com.cervejaria.entity;
 public enum Sabor {
 
 	
-	ADOCICADA("adocicada"),
-	AMARGA("amarga"),
-	FORTE("forte"),
-	FRUTADA("frutada"),
-	SUAVE("suave");
+	ADOCICADA("Adocicada"),
+	AMARGA("Amarga"),
+	FORTE("Forte"),
+	FRUTADA("Frutada"),
+	SUAVE("Suave");
 	
 	private String descricao;
 	
-	Sabor(String decricao){
-		this.descricao=decricao;
+	Sabor(String descricao){
+		this.descricao=descricao;
 		
 	}
 
