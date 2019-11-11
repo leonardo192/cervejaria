@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-				xmlns:th="http://www.thymeleaf.org"
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-				layout:decorate="~{layout}">
-				
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+
 
 <body>
 
@@ -12,47 +12,48 @@
 	<section layout:fragment="principal">
 
 
-			<div class="page-header">
-				<div class="container-fluid">
-					<h1>
-						Cadastro de estilos
-					</h1>
-				</div>
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>Cadastro de estilos</h1>
 			</div>
+		</div>
 
 		<div class="container-fluid">
 
-<!-- 	<div class="alert  alert-danger  alert-dismissible" role="alert">
+			<!-- 	<div class="alert  alert-danger  alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		<i class="fa  fa-exclamation-circle"></i> Já existe um produto com o nome informado.
 	</div>
  -->
-	<form method="POST"
-			th:action="@{/estilo/salvar}"
-			th:object="${estilo}" 
-			class="form-vertical  js-form-loading">
-		<div class="row">	
-			<div class="col-sm-3">
-				<div class="form-group">
-					<label for="nome">Nome</label>
-					<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
-				</div>
-			</div>
-			</div>
-			
-				
-				<div class="form-group">
-					<button class="btn  btn-primary" type="submit">Salvar</button>
-<!-- 			<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a> -->
-<!-- 			<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a> -->
-		
+
+
+			<form method="POST" th:action="@{/estilo/salvar}"
+				th:object="${estilo}" class="form-vertical  js-form-loading">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="nome">Nome</label> <input id="nome" type="text"
+								class="form-control" th:field="*{nome}"
+								th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
+								<div class="invalid-feedback">
+								<span th:errors="*{nome}"></span>
+							</div>
+						</div>
+					</div>
+					</div>
+
+
+					<div class="form-group">
+						<button class="btn  btn-primary" type="submit">Salvar</button>
+						<!-- 			<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a> -->
+						<!-- 			<a href="#" class="btn  btn-link  aw-btn-link-danger" onclick="excluir()">Excluir este produto</a> -->
+
+					</div>
+			</form>
 		</div>
 
-	</form>
-</div>
-
-<div th:replace="fragments/cadastroEstiloModal :: modalEstilo"></div>
-</section>
+		<div th:replace="fragments/cadastroEstiloModal :: modalEstilo"></div>
+	</section>
 
 
 

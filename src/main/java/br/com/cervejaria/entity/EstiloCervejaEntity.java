@@ -25,7 +25,7 @@ public class EstiloCervejaEntity implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
+	@NotBlank(message="O campo não pode ser vazio / em branco")
 	@Column(name="nome_estilo")
 	private String nome;
 	

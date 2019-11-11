@@ -47,7 +47,7 @@ public class CervejaEntity implements Serializable {
 	private String foto;
 	
 
-	@NotNull(message="O valor da cerveja não pode ser nullo")
+	@NotNull(message="O valor da cerveja não pode ser vazio / em branco")
 	@NumberFormat(style = Style.CURRENCY, pattern="#,##0.00")
 	private BigDecimal valor;
 	
@@ -58,7 +58,7 @@ public class CervejaEntity implements Serializable {
 	@NumberFormat(style=Style.CURRENCY, pattern="#,##0.00")
 	private BigDecimal comissao;
 	
-	@NotNull
+	@NotNull(message="O valor do estoque deve conter um valor válido")
 	@NumberFormat(style=Style.NUMBER)
 	@Column(name="quantidade_estoque")
 	private Integer quantidadeEstoque;
