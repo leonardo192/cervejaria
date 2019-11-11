@@ -29,6 +29,11 @@
 
 			<form method="POST" th:action="@{/estilo/salvar}"
 				th:object="${estilo}" class="form-vertical  js-form-loading">
+				
+				
+				<th:block th:include="fragments/messageError"></th:block>
+				<th:block th:include="fragments/messageSuccess"></th:block>	
+				
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="form-group">

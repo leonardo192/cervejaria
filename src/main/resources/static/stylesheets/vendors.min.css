@@ -11387,3 +11387,8 @@ opacity
     black;
 
 }
+
+
+.invalid-feedback {
+    display: table-row;
+}
