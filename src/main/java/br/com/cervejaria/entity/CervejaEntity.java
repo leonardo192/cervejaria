@@ -46,9 +46,7 @@ public class CervejaEntity implements Serializable {
 	
 	private String foto;
 	
-	@NotNull
-	private Integer volume;
-	
+
 	@NotNull(message="O valor da cerveja não pode ser nullo")
 	@NumberFormat(style = Style.CURRENCY, pattern="#,##0.00")
 	private BigDecimal valor;
@@ -61,6 +59,7 @@ public class CervejaEntity implements Serializable {
 	private BigDecimal comissao;
 	
 	@NotNull
+	@NumberFormat(style=Style.NUMBER)
 	@Column(name="quantidade_estoque")
 	private Integer quantidadeEstoque;
 	
@@ -116,13 +115,6 @@ public class CervejaEntity implements Serializable {
 		this.foto = foto;
 	}
 
-	public Integer getVolume() {
-		return volume;
-	}
-
-	public void setVolume(Integer volume) {
-		this.volume = volume;
-	}
 
 	public BigDecimal getValor() {
 		return valor;

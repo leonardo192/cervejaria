@@ -28,13 +28,14 @@
 	</div>
  -->
 	<form method="POST"
-			th:object="${estilos}" 
+			th:action="@{/estilo/salvar}"
+			th:object="${estilo}" 
 			class="form-vertical  js-form-loading">
 		<div class="row">	
 			<div class="col-sm-3">
 				<div class="form-group">
-					<label for="nomeEstilo">Nome</label>
-					<input id="nomeEstilo" type="text" class="form-control"/>
+					<label for="nome">Nome</label>
+					<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
 				</div>
 			</div>
 			</div>

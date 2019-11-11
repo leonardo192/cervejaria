@@ -20,63 +20,55 @@ import br.com.cervejaria.entity.Origem;
 import br.com.cervejaria.entity.Sabor;
 import br.com.cervejaria.repository.CervejaDao;
 import br.com.cervejaria.repository.EstiloCervejaDao;
+import br.com.cervejaria.service.CervejaService;
 
 @Controller
 @RequestMapping("/cerveja")
 public class CervejaController {
-	
-	
+
 	@Autowired
-	private CervejaDao dao;
-	
+	private CervejaService service;
+
 	@Autowired
 	private EstiloCervejaDao estiloDao;
-	
-	
-	  @GetMapping("/estilo") public String cadastroEstilo(CervejaEntity cerveja) {
-	  return "cerveja/cadastro-estilo";
-	  
-	  }
-	 
-	
+
+
+
 	@GetMapping("/produto")
-	public ModelAndView listar( @ModelAttribute("cerveja") CervejaEntity cerveja) {
+	public ModelAndView listar(@ModelAttribute("cerveja") CervejaEntity cerveja) {
 		ModelAndView mv = new ModelAndView("cerveja/cadastro-produto");
 		return mv;
-		
+
 	}
-	
+
 	@PostMapping("/salvar")
-	public ModelAndView cadastrar(@Valid CervejaEntity cerveja ,BindingResult result, RedirectAttributes attr) {
-		if(result.hasErrors()) {
+	public ModelAndView cadastrar(@ModelAttribute("cerveja") @Valid CervejaEntity cerveja, BindingResult result,
+			RedirectAttributes attr) {
+
+		if (result.hasErrors()) {
 			return listar(cerveja);
 		}
-		
-		
-		ModelAndView mv = new ModelAndView("redirect:cerveja/cadastro-produto");
-		dao.save(cerveja);
+
+		ModelAndView mv = new ModelAndView("redirect:/cerveja/produto");
+		service.salvar(cerveja);
 		attr.addFlashAttribute("success", "Produto cadastrado com sucesso!");
-		
+
 		return mv;
 	}
-	
-	
-	
+
 	@ModelAttribute("sabor")
 	public Sabor[] getSabores() {
 		return Sabor.values();
 	}
-	
-	
+
 	@ModelAttribute("estilos")
-	public List<EstiloCervejaEntity> getEstilos(){
-		return  estiloDao.findAll();	
+	public List<EstiloCervejaEntity> getEstilos() {
+		return estiloDao.findAll();
 	}
-	
+
 	@ModelAttribute("origem")
 	public Origem[] getOrigem() {
 		return Origem.values();
 	}
-
 
 }
