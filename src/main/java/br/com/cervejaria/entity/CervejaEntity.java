@@ -13,8 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.NumberFormat;
@@ -33,6 +36,7 @@ public class CervejaEntity implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Pattern(regexp="([a-zA-Z]{2}\\d{4})?",message="Sku deve seguir o padrão XX9999")
 	@NotBlank(message="A cerveja deve possuir um valor de SKU válido")
 	private String sku;
 	
@@ -49,6 +53,9 @@ public class CervejaEntity implements Serializable {
 
 	@NotNull(message="O valor da cerveja não pode ser vazio / em branco")
 	@NumberFormat(style = Style.CURRENCY, pattern="#,##0.00")
+	@DecimalMin("0.10")
+	@DecimalMax(value="10000.00", message="O valor da cerveja deve ser inferior a 10,000.00")
+	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal valor;
 	
 	@NotNull(message="O valor do teor alcoolico é obrigatório")
@@ -59,7 +66,8 @@ public class CervejaEntity implements Serializable {
 	private BigDecimal comissao;
 	
 	@NotNull(message="O valor do estoque deve conter um valor válido")
-	@NumberFormat(style=Style.NUMBER)
+	@NumberFormat(style=Style.NUMBER,pattern="000")
+	@DecimalMax(value="100000.00", message="O valor máximo de estoque deve ser inferior a 100,000.00")
 	@Column(name="quantidade_estoque")
 	private Integer quantidadeEstoque;
 	
@@ -67,12 +75,13 @@ public class CervejaEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
 	
-	@NotNull
+	@NotNull(message="Informe um sabor válido")
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 	
 	@ManyToOne
 	@JoinColumn(name="id_estilo_fk")
+	@NotNull
 	private EstiloCervejaEntity estilo;
 
 	public Long getId() {

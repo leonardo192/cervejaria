@@ -18,6 +18,7 @@ import br.com.cervejaria.entity.CervejaEntity;
 import br.com.cervejaria.entity.EstiloCervejaEntity;
 import br.com.cervejaria.entity.Origem;
 import br.com.cervejaria.entity.Sabor;
+import br.com.cervejaria.exception.NameAlreadyCervejaCadastradaException;
 import br.com.cervejaria.repository.CervejaDao;
 import br.com.cervejaria.repository.EstiloCervejaDao;
 import br.com.cervejaria.service.CervejaService;
@@ -50,7 +51,12 @@ public class CervejaController {
 		}
 
 		ModelAndView mv = new ModelAndView("redirect:/cerveja/produto");
+		try {
 		service.salvar(cerveja);
+		}catch (NameAlreadyCervejaCadastradaException e) {
+			result.rejectValue("nome", e.getMessage(),e.getMessage());
+			return listar(cerveja);
+		}
 		attr.addFlashAttribute("success", "Produto cadastrado com sucesso!");
 
 		return mv;

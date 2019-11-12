@@ -16,6 +16,8 @@ public interface CervejaDao extends JpaRepository<CervejaEntity, Long>{
 	
 	public Optional<CervejaEntity> findById(Long id);
 	
+	public Optional<CervejaEntity> findByNomeIgnoreCase(String nome);
+	
 	
 
 	

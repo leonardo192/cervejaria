@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="estilo")
@@ -26,6 +27,7 @@ public class EstiloCervejaEntity implements Serializable {
 	private Long id;
 	
 	@NotBlank(message="O campo não pode ser vazio / em branco")
+	@Size(min=2, max=15,message="O campo deve conter entre {min} e {max} caracteres")
 	@Column(name="nome_estilo")
 	private String nome;
 	

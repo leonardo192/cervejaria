@@ -1,5 +1,6 @@
 package br.com.cervejaria.controller;
 
+import javax.naming.NameAlreadyBoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.cervejaria.entity.EstiloCervejaEntity;
+import br.com.cervejaria.exception.NameAlreadyCadastradoException;
 import br.com.cervejaria.service.EstiloService;
 
 
@@ -32,13 +34,18 @@ public class EstiloCervejaController {
 	}
 	
 	@PostMapping("/salvar")
-	public ModelAndView cadastrar(@ModelAttribute("estilo") @Valid EstiloCervejaEntity estilo, BindingResult result, RedirectAttributes attr) {
+	public ModelAndView cadastrar(@ModelAttribute("estilo") @Valid EstiloCervejaEntity estilo, BindingResult result, RedirectAttributes attr) throws NameAlreadyBoundException {
 		if(result.hasErrors()) {
 			return cadastroEstilo(estilo);
 		}
 		
 		ModelAndView mv = new ModelAndView("redirect:/estilo/cadastro");
+		try {
 		service.salvar(estilo);
+		}catch (NameAlreadyCadastradoException e) {
+			result.rejectValue("nome", e.getMessage(),e.getMessage());
+			return cadastroEstilo(estilo);
+		}
 		attr.addFlashAttribute("success", "Estilo salvo com sucesso!");
 		
 		return mv;

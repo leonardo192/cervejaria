@@ -3,8 +3,8 @@ package br.com.cervejaria.entity;
 public enum Origem {
 	
 	
-	NACIONAL("nacional"),
-	INTERNACIONAL("internacional");
+	NACIONAL("Nacional"),
+	INTERNACIONAL("Internacional");
 	
 	private String nacionalidade;
 	
