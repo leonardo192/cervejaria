@@ -19,7 +19,6 @@ import br.com.cervejaria.entity.EstiloCervejaEntity;
 import br.com.cervejaria.entity.Origem;
 import br.com.cervejaria.entity.Sabor;
 import br.com.cervejaria.exception.NameAlreadyCervejaCadastradaException;
-import br.com.cervejaria.repository.CervejaDao;
 import br.com.cervejaria.repository.EstiloCervejaDao;
 import br.com.cervejaria.service.CervejaService;
 

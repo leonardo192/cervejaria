@@ -176,13 +176,13 @@
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>
-	</form>
+		</form>
 
 
-<div th:replace="fragments/cadastroEstiloModal :: modalEstilo"></div>
+	<div th:replace="fragments/cadastroEstiloModal :: modalEstilo"></div>
 </section>
-
-
-
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/cadastro-rapido.js}"></script>
+	</th:block>
 </body>
 </html>

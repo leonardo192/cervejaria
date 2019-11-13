@@ -2,7 +2,6 @@ package br.com.cervejaria.service;
 
 import java.util.Optional;
 
-import javax.naming.NameAlreadyBoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class CervejaService {
 	public void salvar(CervejaEntity cerveja) {
 		Optional<CervejaEntity> cervejaOprional = dao.findByNomeIgnoreCase(cerveja.getNome());
 		if(cervejaOprional.isPresent()) {
-			throw new NameAlreadyCervejaCadastradaException("Cerveja ja existe no sistema!");
+			throw new NameAlreadyCervejaCadastradaException("Cerveja ja cadastrada no sistema!");
 		}
 		dao.save(cerveja);
 	}
