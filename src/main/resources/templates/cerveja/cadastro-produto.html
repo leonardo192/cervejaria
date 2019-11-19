@@ -38,17 +38,17 @@
 		<div class="row">	
 			<div class="col-sm-3">
 				<div class="form-group" th:classappend="${#fields.hasErrors('sku')} ? has-error">
-					<label for="sku">Sku</label>
-					<input id="sku" type="text" class="form-control" th:field="*{sku}"
-					th:classappend="${#fields.hasErrors('sku')} ? 'is-invalid'"/>
-					<div class="invalid-feedback">
+					<label class="control-label" for="sku">Sku</label>
+					<input id="sku" type="text" class="form-control " th:field="*{sku}"
+					th:classappend="${#fields.hasErrors('sku')} ? 'is-invalid '"/>
+					<div class="invalid-feedback control-label">
 					<span th:errors="*{sku}"></span>
 				</div>
 			</div>
 		</div>
 			<div class="col-sm-9">
 				<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
-					<label for="nome">Nome</label>
+					<label class="control-label" for="nome">Nome</label>
 					<input id="nome" type="text" class="form-control" th:field="*{nome}"
 					th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"/>
 					<div class="invalid-feedback">
@@ -60,7 +60,7 @@
 		
 		<div class="row">
 			<div class="form-group col-sm-12" th:classappend="${#fields.hasErrors('descricao')} ? has-error ">
-				<label for="descricao">Descrição</label>
+				<label class="control-label" for="descricao">Descrição</label>
 				<textarea id="descricao" rows="3" class="form-control" th:field="*{descricao}"
 				th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid'"	></textarea>
 				<div class="invalid-feedback"></div>
@@ -71,7 +71,7 @@
 	<div class="row">	
 			<div class="col-sm-3">
 				<div class="form-group" th:classappend="${#fields.hasErrors('estilo')} ? has-error">
-					<label for="estilo">Estilo</label>
+					<label class="control-label" for="estilo">Estilo</label>
 					<div class="cr-field-action"/>
 					<select id="estilo" class="form-control" th:field="*{estilo}">
 					<option value="">Selecione um campo</option>
@@ -89,7 +89,7 @@
 	
 		<div class="col-sm-12">
 				<div class="form-group sabor" th:classappend="${#fields.hasErrors('sabor')} ? has-error">
-					<label for="sabor">Sabor</label>
+					<label class="control-label" for="sabor">Sabor</label>
 					<select id="sabor" class="form-control" th:field="*{sabor}"/>
 					<option  value="">Selecione um campo </option>
 					<option  th:each="sabor : ${sabor}" th:value="${sabor}" th:text="${sabor.descricao}">Teste </option>
@@ -101,7 +101,7 @@
 			
 		<div class="col-sm-3">
 				<div class="form-group" th:classappend="${#fields.hasErrors('teorAlcoolico')} ? has-error">
-					<label for="teorAlcoolico">Teor alcoolico</label>
+					<label class="control-label" for="teorAlcoolico">Teor alcoolico</label>
 					<div class="input-group"> 	
 					<input id="teorAlcoolico" type="text" class="form-control js-decimal" th:field="*{teorAlcoolico}"
 					th:classappend="${#fields.hasErrors('teorAlcoolico')} ? 'is-invalid'"/>
@@ -117,7 +117,7 @@
 			<div class="col-sm-2">
 				<div class="form-group" >
 					
-					<label for="nacionalidade">Nacionalidade</label>
+					<label class="control-label" for="nacionalidade">Nacionalidade</label>
 					<div>	
 						<th:block th:each="origem : ${origem}" th:value="${origem}" >
 						<div class="radio radio-in-line">
@@ -136,7 +136,7 @@
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="form-group" th:classappend="${#fields.hasErrors('cerveja.valor')} ? has-error">
-							<label for="valor">Preço</label>
+							<label class="control-label" for="valor">Preço</label>
 									<div class="input-group"> 
 										<input id="valor" type="text"  class="form-control js-decimal" placeholder="R$" th:field="*{cerveja.valor}" 
 										th:classappend="${#fields.hasErrors('cerveja.valor')} ? 'is-invalid'"/>
@@ -150,7 +150,7 @@
 			
 			<div class="col-sm-3">
 				<div class="form-group" >
-					<label for="comissao">Comissão</label>
+					<labelfor="comissao">Comissão</label>
 						<div class="input-group"> 
 					<input id="comissao" type="text" class="form-control js-decimal" placeholder="Valor da comissão" th:field="*{cerveja.comissao}" />
 					<div class="input-group-addon">%</div>
@@ -160,7 +160,7 @@
 		
 		<div class="col-sm-3">
 				<div class="form-group" th:classappend="${#fields.hasErrors('cerveja.quantidadeEstoque')} ? has-error">
-					<label for="quantidadeEstoque">Estoque</label>
+					<label class="control-label" for="quantidadeEstoque">Estoque</label>
 						<div class="input-group"> 
 					<input id="quantidadeEstoque" type="text" class="form-control " th:field="*{cerveja.quantidadeEstoque}" 
 					th:classappend="${#fields.hasErrors('cerveja.quantidadeEstoque')} ? 'is-invalid'"/>
@@ -171,11 +171,25 @@
 			</div>
 		</div>
 	</div>
-		
+	
+	<div class="row">
+		<div class="form-group  col-sm-12">
+		<label class="control-label">Foto</label>
+			<div class="bw-upload">
+				<i class="glyphicon  glyphicon-cloud-upload "></i>
+				<span>Arraste a foto da cerveja aqui!</span>
+				<a class="bw-upload-form-file">Selecione <input type="file" accept=".jpg , .jpeg, .png"></a>
 			
+			</div>
+		</div>
+	</div>
+
+		
+	
 				<div class="form-group">
 					<button class="btn  btn-primary" type="submit">Salvar</button>
 				</div>
+		
 		</form>
 
 
@@ -183,6 +197,8 @@
 </section>
 	<th:block layout:fragment="javascript-extra">
 		<script th:src="@{/javascripts/cadastro-rapido.js}"></script>
+		<script th:src="@{/vendors/unkit.min.js}"></script>
+		<script th:src="@{/vendors/upload.min.js}"></script>
 	</th:block>
 </body>
 </html>
