@@ -12,8 +12,7 @@ import br.com.cervejaria.entity.CervejaEntity;
 public interface CervejaDao extends JpaRepository<CervejaEntity, Long>{
 	
 	public Optional<CervejaEntity>findBySku(String sku);
-	
-	
+
 	public Optional<CervejaEntity> findById(Long id);
 	
 	public Optional<CervejaEntity> findByNomeIgnoreCase(String nome);

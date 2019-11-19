@@ -83,6 +83,14 @@ public class CervejaEntity implements Serializable {
 	@JoinColumn(name="id_estilo_fk")
 	@NotNull
 	private EstiloCervejaEntity estilo;
+	
+	/*
+	 * @PrePersist
+	 * 
+	 * @PreUpdate private void prePersistir() { sku = sku.toUpperCase();
+	 * 
+	 * }
+	 */
 
 	public Long getId() {
 		return id;
