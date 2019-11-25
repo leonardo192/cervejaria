@@ -30,7 +30,8 @@
 	<form 	th:action="@{/cerveja/salvar}"
 			th:object="${cerveja}" 
 			method="POST"
-			class="form-vertical  js-form-loading">
+			class="form-vertical  js-form-loading"
+		>
 			
 		<th:block th:include="fragments/messageError"></th:block>
 		<th:block th:include="fragments/messageSuccess"></th:block>		
@@ -175,10 +176,10 @@
 	<div class="row">
 		<div class="form-group  col-sm-12">
 		<label class="control-label">Foto</label>
-			<div class="bw-upload">
+			<div id="upload-drop" class="bw-upload">
 				<i class="glyphicon  glyphicon-cloud-upload "></i>
 				<span>Arraste a foto da cerveja aqui!</span>
-				<a class="bw-upload-form-file">Selecione <input type="file" accept=".jpg , .jpeg, .png"></a>
+				<a class="bw-upload-form-file">Selecione <input id="upload-select" type="file" accept=".jpg , .jpeg, .png"></a>
 			
 			</div>
 		</div>
@@ -197,8 +198,26 @@
 </section>
 	<th:block layout:fragment="javascript-extra">
 		<script th:src="@{/javascripts/cadastro-rapido.js}"></script>
-		<script th:src="@{/vendors/unkit.min.js}"></script>
+		<script th:src="@{/vendors/uikit.min.js}"></script>
 		<script th:src="@{/vendors/upload.min.js}"></script>
+		
+		<script>
+		 
+			$(function(){
+				var settings={
+						type:'json',
+						filelimit:1,
+						allow:'*.(jpg|jpeg|png)',
+						action:'/fotos'
+				};
+				
+				UIkit.uploadSelect($('#upload-select'),settings);
+				UIkit.uploadDrop($('#upload-drop'),settings);
+				
+			});
+		
+		</script>
+		
 	</th:block>
 </body>
 </html>
